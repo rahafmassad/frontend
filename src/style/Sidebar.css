@@ -1,0 +1,42 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 100vh;
+  background-color: #ffe0e6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  overflow-y: auto;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 50%;
+  height: 2px;
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.icon-link {
+  font-size: 30px;
+  color: #333;
+  text-decoration: none;
+}
+
+.icon-link:hover {
+  color: #ff8ea1;
+}

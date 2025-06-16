@@ -21,7 +21,7 @@ function EditProfile({ user, handleSignout }) {
     if (!user || !user.id) {
       alert("User not found. Please sign in again.");
       return;
-    }
+    } //hi
     const dataToSend = new FormData();
 
     dataToSend.append("email", formData.email);

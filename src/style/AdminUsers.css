@@ -1,0 +1,68 @@
+.users-page-container {
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  margin-left: 80px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.user-search {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  transition: background 0.2s ease-in-out;
+}
+
+.user-item:hover {
+  background: #fafafa;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.user-details {
+  flex-grow: 1;
+}
+
+.user-email {
+  font-weight: 600;
+  color: #333;
+}
+
+.user-subtitle {
+  font-size: 14px;
+  color: #888;
+}
+
+.delete-icon {
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.delete-icon:hover {
+  color: #f48ca0;
+}

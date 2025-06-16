@@ -1,0 +1,78 @@
+.components {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.create-page {
+  margin-left: 80px;
+  padding: 20px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  font-family: sans-serif;
+}
+
+.back-arrow {
+  color: #f48ca0;
+  font-size: 20px;
+  margin-bottom: 80px;
+  margin-left: 80px;
+  margin-right: 290px;
+  cursor: pointer;
+}
+
+.form-container {
+  background-color: #ffe0e6;
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-control {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.file-input {
+  height: 200px;
+  background-color: white;
+  border: 1px dashed #ccc;
+  color: #ffb6c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.submit-button {
+  width: 30%;
+  background-color: #f88ea1;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+
+.submit-button:hover {
+  background-color: #ff6e90;
+}

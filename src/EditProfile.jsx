@@ -18,16 +18,12 @@ function EditProfile({ user, handleSignout }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
- page/editprofile
-    
-        const dataToSend = new FormData();
-
-  if (!user || !user.id) {
-    alert("User not found. Please sign in again.");
-    return;
-  }
+    if (!user || !user.id) {
+      alert("User not found. Please sign in again.");
+      return;
+    }
     const dataToSend = new FormData();
- main
+
     dataToSend.append("email", formData.email);
     dataToSend.append("username", formData.username);
     dataToSend.append("full_name", formData.full_name);

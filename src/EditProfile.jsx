@@ -10,15 +10,36 @@ import './style/Profile.css';
 
 function EditProfile({ user, handleUpdate, handleSignout }) {
   const [formData, setFormData] = useState({
-    image: null,
-    fullName: user?.fullName || "",
+    profile_picture: null,
+    full_name: user?.full_name || "",
     email: user?.email || "",
     username: user?.username || ""
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdate(formData);
+    
+        const dataToSend = new FormData();
+    dataToSend.append("email", formData.email);
+    dataToSend.append("username", formData.username);
+    dataToSend.append("full_name", formData.full_name);
+    if (formData.profile_picture) {
+      dataToSend.append("profile_picture", formData.profile_picture);
+    }
+
+    fetch(`http://localhost:5000/api/users/${user.id}`, {
+      method: "PUT",
+      body: dataToSend,
+    })
+      .then((res) => res.json())
+      .then((updated) => {
+        localStorage.setItem("user", JSON.stringify(updated.user));
+        alert("Profile updated!");
+      })
+      .catch((err) => {
+        console.error("Update failed:", err);
+        alert("Update failed.");
+      });
   };
 
   return (

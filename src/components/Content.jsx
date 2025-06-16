@@ -19,7 +19,7 @@ function Content() {
   return (
     <div className="content-container">
       {products.slice(0, 10).map((item) => (
-        <Link to={`/product/${item.id}`} key={item.id} className="product-link">
+        <Link to={`/content/${item.id}`} key={item.id} className="product-link">
           <div className="product-card">
             <img src={item.image_link} alt={item.name} className="product-img" />
             <strong className="product-name">{item.name}</strong>

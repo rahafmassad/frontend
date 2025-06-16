@@ -8,17 +8,41 @@ import Sidebar from './components/Sidebar';
 import './style/Create.css';
 import './style/Profile.css';
 
-function EditProfile({ user, handleUpdate, handleSignout }) {
+function EditProfile({ user, handleSignout }) {
   const [formData, setFormData] = useState({
-    image: null,
-    fullName: user?.fullName || "",
+    profile_picture: null,
+    full_name: user?.full_name || "",
     email: user?.email || "",
     username: user?.username || ""
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdate(formData);
+  if (!user || !user.id) {
+    alert("User not found. Please sign in again.");
+    return;
+  }
+    const dataToSend = new FormData();
+    dataToSend.append("email", formData.email);
+    dataToSend.append("username", formData.username);
+    dataToSend.append("full_name", formData.full_name);
+    if (formData.profile_picture) {
+      dataToSend.append("profile_picture", formData.profile_picture);
+    }
+
+    fetch(`http://localhost:5000/api/users/${user.id}`, {
+      method: "PUT",
+      body: dataToSend,
+    })
+      .then((res) => res.json())
+      .then((updated) => {
+        localStorage.setItem("user", JSON.stringify(updated.user));
+        alert("Profile updated!");
+      })
+      .catch((err) => {
+        console.error("Update failed:", err);
+        alert("Update failed.");
+      });
   };
 
   return (
@@ -36,7 +60,7 @@ function EditProfile({ user, handleUpdate, handleSignout }) {
               <input
                 type="file"
                 className="form-control file-input"
-                onChange={(e) => setFormData({ ...formData, image: e.target.files[0] })}
+                onChange={(e) => setFormData({ ...formData, profile_picture: e.target.files[0] })}
               />
             </div>
 
@@ -46,8 +70,8 @@ function EditProfile({ user, handleUpdate, handleSignout }) {
                 type="text"
                 className="form-control"
                 placeholder="Enter full name..."
-                value={formData.fullName}
-                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                value={formData.full_name}
+                onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
                 required
               />
             </div>

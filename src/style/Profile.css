@@ -1,0 +1,69 @@
+.profile-page {
+  margin-left: 80px;
+  padding: 20px;
+}
+
+.back-arrow {
+  color: #f48ca0;
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  cursor: pointer;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-avatar {
+    margin-bottom: 20px;
+    color: #f48ca0;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.tabs span {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.active-tab {
+  border-bottom: 3px solid black;
+}
+
+.profile-icon {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  color: #f48ca0;
+  z-index: 10;
+}
+
+.profile-avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  left: 95px;
+  background-color: #ffe0e6;
+  border: none;
+  border-radius: 15%;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-avatar-btn-icon {
+  color: #ff8ea1;
+  font-size: 15px;
+}

@@ -54,7 +54,11 @@ function App() {
           <Route path="/" element={<Home handleSignout={handleSignout}/>} />
           <Route path="/Create" element={<Create onAdd={(newContent) => setContent((prev) => [...prev, newContent])} user={user} handleSignout={handleSignout}/>}/>
           <Route path="/Chat" element={<Chat handleSignout={handleSignout}/>} />
+ page/editprofile
           <Route path="/EditProfile" element={<EditProfile handleSignout={handleSignout}/>} />
+
+          <Route path="/EditProfile" element={<EditProfile user={user} handleSignout={handleSignout}/>} />
+ main
           <Route path="/Profile" element={<Profile user={user} handleSignout={handleSignout}/>} />
           <Route path="/Welcome" element={<Welcome />} />
           <Route path="/Signup" element={<Signup onSignin={handleSignin} />} />

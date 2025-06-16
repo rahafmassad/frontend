@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeft, FaUserCircle, FaEdit } from 'react-icons/fa'; 
 
-import Search from './components/Search'; //hi
+import Search from './components/Search'; //hello
 import Sidebar from './components/Sidebar';
 
 import './style/Profile.css'; 

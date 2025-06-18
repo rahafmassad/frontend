@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaHome, FaPlus, FaComment, FaSignOutAlt } from "react-icons/fa"; //*
+import { FaHome, FaPlus, FaComment, FaSignOutAlt } from "react-icons/fa"; 
 import '../style/Sidebar.css';
 import logo from '../assets/logo.png';
 

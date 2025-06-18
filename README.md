@@ -1,70 +1,112 @@
-# Getting Started with Create React App
+# Makeup Muse Frontend (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the **frontend** for Makeup Muse — a creative and interactive makeup-sharing platform built with *React + Vite*.
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Makeup Muse is a beauty-focused web app that allows users to explore, share, and save makeup content. It supports two main types of users:
 
-### `npm start`
+- **Regular Users**:
+  - Create and browse makeup posts
+  - Like content
+  - Save favorite content to their profile
+  - Chat with other users
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Admins**:
+  - View all users and content
+  - Delete inappropriate content
+  - Remove users when needed
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Authentication is powered by **Auth0**, enabling secure login and role-based authorization. All user actions are persisted via a PostgreSQL-backed Express API.
 
-### `npm test`
+## User Requirements
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Login or Sign Up** using Auth0
+2. On sign-up, choose your role: `user` or predefined `admin`
+3. **Regular Users** can:
+   - Create content (image + title + description)
+   - Search for content and users
+   - Save/unsave content
+   - Update their profile
+   - Start conversations with others
+4. **Admin Users** can:
+   - View all users and posts
+   - Delete content or users directly from admin panels
+5. The app supports real-time chat and saves sessions using `localStorage`
 
-### `npm run build`
+## Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React 18
+- Vite
+- React Router DOM
+- React-Bootstrap (for responsive design)
+- Auth0 (authentication/authorization)
+- Fetch API
+- LocalStorage (session persistence)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-### `npm run eject`
+Make sure the backend server is running at `http://localhost:5000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Folder Structure
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+/src
+├── assets/              # Images and logos
+├── components/          # Reusable UI components
+│   ├── Sidebar.jsx
+│   ├── Content.jsx
+│   ├── AdminSidebar.jsx
+│   ├── UserSearch.jsx
+│   ├── AdminSearch.jsx
+│   └── Users.jsx
+├── pages/               # Pages like Home, Profile, Create, Chat
+│   ├── Home.jsx
+│   ├── Profile.jsx
+│   ├── Create.jsx
+│   ├── Chat.jsx
+│   ├── EditProfile.jsx
+│   ├── AdminUsers.jsx
+│   ├── AdminContent.jsx
+│   ├── Signin.jsx
+│   ├── Signup.jsx
+│   └── Welcome.jsx
+├── style/               # CSS styling files
+├── App.jsx
+└── main.jsx
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+> Additional UI components like `EditProfile`, `AdminSidebar`, `UserSearch`, and styling files (`*.css`) are used to enhance usability, layout responsiveness, and support admin/user workflows.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Integration
 
-## Learn More
+- Internal API: Express-based backend (e.g., `/api/users`, `/api/content`)
+- Third-party API: [Makeup API](http://makeup-api.herokuapp.com/api/v1/products.json) used to fetch real product data
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Authentication
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Auth0 is used to:
+  - Manage user login/signup
+  - Issue secure access tokens (JWT)
+  - Authorize based on user role (`user`, `admin`)
 
-### Code Splitting
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This app is intended to be deployed separately from the backend:
+- Frontend: [Vercel](https://vercel.com/) or [Netlify](https://www.netlify.com/)
+- Backend: [Render](https://render.com/) or [Railway](https://railway.app/)
 
-### Analyzing the Bundle Size
+Ensure to configure the `.env` for both projects appropriately and link frontend calls to the deployed backend API base URL.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Notes
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Designed with accessibility and responsiveness in mind
+- Clean UI with warm pink-white theme matching beauty branding
+- GitHub Repository:
+  - [Frontend](https://github.com/rahafmassad/frontend.git)

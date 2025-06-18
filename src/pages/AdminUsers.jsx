@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import './style/AdminUsers.css';
 
-import Search from './components/Search'; //*
-import AdminSidebar from './components/AdminSidebar'; //*
+import '../style/AdminUsers.css';
+
+import Search from '../components/AdminSearch';
+import AdminSidebar from '../components/AdminSidebar';
 
 const AdminUsers = ({ handleSignout }) => {
   const [users, setUsers] = useState([]);
-  // const [search, setSearch] = useState('');
 
 useEffect(() => {
   fetch('http://localhost:5000/api/users/all', {
@@ -18,9 +18,9 @@ useEffect(() => {
     .catch(err => console.error('Failed to fetch users:', err));
 }, []);
 
-
   const handleDelete = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
+
       await fetch(`http://localhost:5000/api/users/${userId}`, {
         method: 'DELETE',
         headers: { "x-role": "admin" }
@@ -30,16 +30,10 @@ useEffect(() => {
     }
   };
 
-  // const filteredUsers = users.filter(user =>
-  //   user.email.toLowerCase().includes(search.toLowerCase())
-  // );
-
   return (
     <div className="users-page-container">
       <AdminSidebar handleSignout={handleSignout}/>
-      <Search onResults={(data) => {
-        setUsers(data.users);
-      }} />
+      <Search onResults={(data) => {setUsers(data.users);}} />
       <div className="user-list">
         {users
           .filter(user => user.role !== "admin")
@@ -50,11 +44,7 @@ useEffect(() => {
                 <div className="user-email">{user.email}</div>
                 <div className="user-subtitle">Subtitle</div>
               </div>
-              <FaTrash
-                className="delete-icon"
-                onClick={() => handleDelete(user.id)}
-                title="Delete User"
-              />
+              <FaTrash className="delete-icon" onClick={() => handleDelete(user.id)} title="Delete User"/>
             </div>
         ))}
       </div>

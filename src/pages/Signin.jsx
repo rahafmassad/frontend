@@ -1,14 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./style/Signin.css";
-import logo from "./assets/MMM.png";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import "../style/Signin.css";
+import logo from "../assets/MMM.png";
 
 const Signin = ({ onSignin }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const signin = async () => {
+  const navigate = useNavigate();
+
+  const signin = async (e) => {
+
+    e.preventDefault();
+
     const res = await fetch("http://localhost:5000/api/auth/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -21,9 +27,9 @@ const Signin = ({ onSignin }) => {
       onSignin(data.user);
 
       if (data.user.role === "admin") {
-        window.location.href = "/AdminUsers";
+        navigate("/AdminUsers");
       } else {
-        window.location.href = "/";
+        navigate("/");
       }
 
     } else {
@@ -49,7 +55,7 @@ const Signin = ({ onSignin }) => {
             <input type="password" placeholder="Enter password..." value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
 
-          <button className="signin-button" type="submit" onClick={signin}>Sign In</button>
+          <button className="signin-button" onClick={signin}>Sign In</button>
         </form>
 
         <p className="redirect-text">

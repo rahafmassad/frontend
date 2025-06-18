@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import './style/AdminContent.css';
+import { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
-import Search from './components/Search';
-import AdminSidebar from './components/AdminSidebar';
+
+import Search from '../components/AdminSearch';
+import AdminSidebar from '../components/AdminSidebar';
+
+import '../style/AdminContent.css';
 
 const AdminContent = ({ handleSignout }) => {
   const [contentList, setContentList] = useState([]);
@@ -18,7 +20,7 @@ const AdminContent = ({ handleSignout }) => {
         const data = await res.json();
         setContentList(data || []); 
       } catch (err) {
-        console.error("❌ Failed to fetch content:", err);
+        console.error("Failed to fetch content:", err);
         setContentList([]);
       }
     };
@@ -38,7 +40,7 @@ const AdminContent = ({ handleSignout }) => {
         });
         setContentList(prev => prev.filter(item => item.content_id !== id));
       } catch (err) {
-        console.error("❌ Failed to delete content:", err);
+        console.error("Failed to delete content:", err);
       }
     }
   };

@@ -67,3 +67,37 @@
   color: #ff8ea1;
   font-size: 15px;
 }
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.content-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* .content-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+} */
+
+.content-card img {
+  width: 200px;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+
+.content-card p {
+  margin: 10px 0;
+  font-weight: 500;
+}
+

@@ -1,5 +1,5 @@
-import "./style/Welcome.css";
-import logoImage from "./assets/makeupmuse.png";
+import "../style/Welcome.css";
+import logoImage from "../assets/makeupmuse.png";
 import { Link } from "react-router-dom";
 
 const WelcomePage = () => {

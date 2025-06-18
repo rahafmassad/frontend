@@ -1,14 +1,16 @@
-import { Link } from "react-router-dom";
-import "./style/Signup.css";
-import logo from "./assets/MMM.png";
+import { Link, useNavigate } from "react-router-dom";
+import "../style/Signup.css";
+import logo from "../assets/MMM.png";
 import { useState } from "react";
 
 const Signup = ({ onSignin }) => {
 
-  const [fullName, setFullName] = useState(""); //check schema
-  const [username, setUsername] = useState(""); //check schema
+  const [full_name, setFullName] = useState("");
+  const [username, setUsername] = useState(""); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const signup = async (e) => {
 
@@ -17,13 +19,13 @@ const Signup = ({ onSignin }) => {
     const res = await fetch("http://localhost:5000/api/auth/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, username, full_name }),
     });
 
     const data = await res.json();
     if (res.ok) {
       onSignin(data.user); 
-      window.location.href = "/";
+      navigate("/");
     } else {
       alert(data.message || "Signup failed");
     }
@@ -39,7 +41,7 @@ const Signup = ({ onSignin }) => {
         <form onSubmit={signup}>
           <div className="form-group">
             <label>Full Name</label>
-            <input type="text" placeholder="Enter full name..." value={fullName}
+            <input type="text" placeholder="Enter full name..." value={full_name}
           onChange={(e) => setFullName(e.target.value)} />
           </div>
 

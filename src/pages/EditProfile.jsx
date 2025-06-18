@@ -2,54 +2,68 @@ import { FaArrowLeft, FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import Search from './components/Search';
-import Sidebar from './components/Sidebar';
+import Sidebar from '../components/Sidebar';
 
-import './style/Create.css';
-import './style/Profile.css';
+import '../style/Create.css';
+import '../style/Profile.css';
 
-function EditProfile({ user, handleSignout }) {
+function EditProfile({ user, handleSignout, onUpdate }) {
+
   const [formData, setFormData] = useState({
-    profile_picture: null,
-    full_name: user?.full_name || "",
     email: user?.email || "",
-    username: user?.username || ""
+    username: user?.username || "",
+    full_name: user?.full_name || "",
+    profile_picture: null
   });
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
+
     if (!user || !user.id) {
       alert("User not found. Please sign in again.");
       return;
-    } //hi
-    const dataToSend = new FormData();
+    } 
 
-    dataToSend.append("email", formData.email);
-    dataToSend.append("username", formData.username);
-    dataToSend.append("full_name", formData.full_name);
-    if (formData.profile_picture) {
-      dataToSend.append("profile_picture", formData.profile_picture);
-    }
+    const dataToSend = {
+      email: formData.email,
+      username: formData.username,
+      full_name: formData.full_name,
+      profile_picture: formData.profile_picture
+    };
 
     fetch(`http://localhost:5000/api/users/${user.id}`, {
       method: "PUT",
-      body: dataToSend,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(dataToSend)
+      
     })
-      .then((res) => res.json())
-      .then((updated) => {
-        localStorage.setItem("user", JSON.stringify(updated.user));
+
+    .then(async (res) => {
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.message || "Update failed.");
+      }
+      if (result.user) {
+        localStorage.setItem("user", JSON.stringify(result.user));
+        onUpdate(result.user);
         alert("Profile updated!");
-      })
-      .catch((err) => {
-        console.error("Update failed:", err);
-        alert("Update failed.");
-      });
+      } else {
+        throw new Error("No user returned.");
+      }
+    })
+    
+    .catch((err) => {
+      console.error("Update failed:", err);
+      alert("Update failed.");
+    });
   };
 
   return (
     <div className="components"> 
       <Sidebar handleSignout={handleSignout} />
-      <Search />
       <Link to="/Profile" className="profile-icon"><FaUserCircle size={32} /></Link>
 
       <div className="create-page">
